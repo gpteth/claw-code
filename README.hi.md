@@ -18,16 +18,6 @@
 </p>
 
 <p align="center">
-  <a href="https://star-history.com/#instructkr/claw-code&Date">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date&theme=dark" />
-      <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date" />
-      <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date" width="600" />
-    </picture>
-  </a>
-</p>
-
-<p align="center">
   <img src="assets/clawd-hero.jpeg" alt="Claw" width="300" />
 </p>
 
@@ -35,14 +25,8 @@
   <strong>बेहतर Harness उपकरण, लीक हुए Claw Code के संग्रह को संग्रहीत करने मात्र से नहीं</strong>
 </p>
 
-<p align="center">
-  <a href="https://github.com/sponsors/instructkr"><img src="https://img.shields.io/badge/प्रायोजक-%E2%9D%A4-pink?logo=github&style=for-the-badge" alt="GitHub पर प्रायोजित करें" /></a>
-</p>
-
 > [!IMPORTANT]
-> **Rust पोर्ट अब प्रगति पर है** [`dev/rust`](https://github.com/instructkr/claw-code/tree/dev/rust) शाखा पर और आज main में मर्ज होने की उम्मीद है। Rust कार्यान्वयन का लक्ष्य तेज़, मेमोरी-सुरक्षित harness रनटाइम प्रदान करना है। बने रहें — यह परियोजना का निश्चित संस्करण होगा।
-
-> यदि आपको यह कार्य उपयोगी लगता है, तो निरंतर ओपन-सोर्स harness इंजीनियरिंग अनुसंधान का समर्थन करने के लिए [GitHub पर @instructkr को प्रायोजित](https://github.com/sponsors/instructkr) करने पर विचार करें।
+> **Rust पोर्ट अब प्रगति पर है** `dev/rust` शाखा पर और आज main में मर्ज होने की उम्मीद है। Rust कार्यान्वयन का लक्ष्य तेज़, मेमोरी-सुरक्षित harness रनटाइम प्रदान करना है। बने रहें — यह परियोजना का निश्चित संस्करण होगा।
 
 ---
 
@@ -74,8 +58,6 @@ cargo build --release
 पूरी प्रक्रिया [oh-my-codex (OmX)](https://github.com/Yeachan-Heo/oh-my-codex) द्वारा [@bellman_ych](https://x.com/bellman_ych) के माध्यम से एंड-टू-एंड संचालित की गई — OpenAI के Codex ([@OpenAIDevs](https://x.com/OpenAIDevs)) के ऊपर बनी एक वर्कफ़्लो परत। मैंने समानांतर कोड समीक्षा के लिए `$team` मोड और आर्किटेक्ट-स्तरीय सत्यापन के साथ स्थायी निष्पादन लूप के लिए `$ralph` मोड का उपयोग किया।
 
 परिणाम एक क्लीन-रूम Python पुनर्लेखन है जो बिना किसी स्वामित्व स्रोत की नकल किए Claw Code के एजेंट harness के वास्तुशिल्प पैटर्न को कैप्चर करता है। **बने रहें — एक और अधिक सक्षम संस्करण रास्ते में है।**
-
-https://github.com/instructkr/claw-code
 
 ![ट्वीट स्क्रीनशॉट](assets/tweet-screenshot.png)
 

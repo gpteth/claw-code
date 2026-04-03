@@ -18,16 +18,6 @@
 </p>
 
 <p align="center">
-  <a href="https://star-history.com/#instructkr/claw-code&Date">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date&theme=dark" />
-      <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date" />
-      <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date" width="600" />
-    </picture>
-  </a>
-</p>
-
-<p align="center">
   <img src="assets/clawd-hero.jpeg" alt="Claw" width="300" />
 </p>
 
@@ -35,14 +25,8 @@
   <strong>Лучшие инструменты Harness, а не просто хранение архива утёкшего Claw Code</strong>
 </p>
 
-<p align="center">
-  <a href="https://github.com/sponsors/instructkr"><img src="https://img.shields.io/badge/Спонсировать-%E2%9D%A4-pink?logo=github&style=for-the-badge" alt="Спонсировать на GitHub" /></a>
-</p>
-
 > [!IMPORTANT]
-> **Порт на Rust сейчас в разработке** в ветке [`dev/rust`](https://github.com/instructkr/claw-code/tree/dev/rust) и ожидается слияние с main сегодня. Реализация на Rust нацелена на более быструю и безопасную для памяти среду выполнения harness. Следите за обновлениями — это будет окончательная версия проекта.
-
-> Если вы считаете эту работу полезной, рассмотрите [спонсирование @instructkr на GitHub](https://github.com/sponsors/instructkr) для поддержки непрерывных исследований в области open-source harness-инжиниринга.
+> **Порт на Rust сейчас в разработке** в ветке `dev/rust` и ожидается слияние с main сегодня. Реализация на Rust нацелена на более быструю и безопасную для памяти среду выполнения harness. Следите за обновлениями — это будет окончательная версия проекта.
 
 ---
 
@@ -72,8 +56,6 @@ cargo build --release
 31 марта 2026 года в 4 утра я проснулся от шквала уведомлений на телефоне. Исходный код Claw Code был раскрыт, и всё сообщество разработчиков было в ажиотаже. Моя девушка в Корее искренне беспокоилась, что я могу столкнуться с судебным преследованием со стороны оригинальных авторов просто за то, что код был на моей машине — поэтому я сделал то, что сделал бы любой инженер под давлением: сел, перенёс основные функции на Python с нуля и опубликовал до восхода солнца.
 
 Результат — чистая переписка на Python, которая улавливает архитектурные паттерны агентского harness Claw Code без копирования какого-либо проприетарного исходного кода. **Следите за обновлениями — гораздо более мощная версия уже в пути.**
-
-https://github.com/instructkr/claw-code
 
 ![Скриншот твита](assets/tweet-screenshot.png)
 

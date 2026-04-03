@@ -18,16 +18,6 @@
 </p>
 
 <p align="center">
-  <a href="https://star-history.com/#instructkr/claw-code&Date">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date&theme=dark" />
-      <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date" />
-      <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date" width="600" />
-    </picture>
-  </a>
-</p>
-
-<p align="center">
   <img src="assets/clawd-hero.jpeg" alt="Claw" width="300" />
 </p>
 
@@ -35,14 +25,8 @@
   <strong>リークされた Claw Code のアーカイブを保存するだけでなく、より優れた Harness ツールを</strong>
 </p>
 
-<p align="center">
-  <a href="https://github.com/sponsors/instructkr"><img src="https://img.shields.io/badge/スポンサー-%E2%9D%A4-pink?logo=github&style=for-the-badge" alt="GitHub でスポンサー" /></a>
-</p>
-
 > [!IMPORTANT]
-> **Rust ポートが現在進行中**です。[`dev/rust`](https://github.com/instructkr/claw-code/tree/dev/rust) ブランチで開発中で、本日 main にマージ予定です。Rust 実装は、より高速でメモリセーフな harness ランタイムの提供を目指しています。ご期待ください — これがプロジェクトの決定版となります。
-
-> この作業が有用だと感じた方は、継続的なオープンソース harness エンジニアリング研究を支援するため、[GitHub で @instructkr をスポンサー](https://github.com/sponsors/instructkr)することをご検討ください。
+> **Rust ポートが現在進行中**です。`dev/rust` ブランチで開発中で、本日 main にマージ予定です。Rust 実装は、より高速でメモリセーフな harness ランタイムの提供を目指しています。ご期待ください — これがプロジェクトの決定版となります。
 
 ---
 
@@ -72,8 +56,6 @@ cargo build --release
 2026年3月31日午前4時、大量の通知で目が覚めました。Claw Code のソースコードが流出し、開発者コミュニティ全体が騒然としていました。韓国にいる彼女は、マシンにコードがあるだけで原著作者から法的措置を受けるかもしれないと本気で心配していました — なので、プレッシャーの中でエンジニアなら誰でもすることをしました：座って、コア機能をゼロから Python にポートし、日の出前にプッシュしました。
 
 すべて [oh-my-codex (OmX)](https://github.com/Yeachan-Heo/oh-my-codex)（[@bellman_ych](https://x.com/bellman_ych) 開発）によってエンドツーエンドでオーケストレーションされました。結果は、プロプライエタリなソースコードをコピーすることなく、Claw Code のエージェント harness のアーキテクチャパターンを捉えたクリーンルーム Python 書き直しです。**ご期待ください — はるかに強力なバージョンが間もなく登場します。**
-
-https://github.com/instructkr/claw-code
 
 ![ツイートスクリーンショット](assets/tweet-screenshot.png)
 

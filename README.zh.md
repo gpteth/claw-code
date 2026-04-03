@@ -18,16 +18,6 @@
 </p>
 
 <p align="center">
-  <a href="https://star-history.com/#instructkr/claw-code&Date">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date&theme=dark" />
-      <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date" />
-      <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date" width="600" />
-    </picture>
-  </a>
-</p>
-
-<p align="center">
   <img src="assets/clawd-hero.jpeg" alt="Claw" width="300" />
 </p>
 
@@ -35,14 +25,8 @@
   <strong>更好的 Harness 工具，而非仅存储泄露的 Claw Code 存档</strong>
 </p>
 
-<p align="center">
-  <a href="https://github.com/sponsors/instructkr"><img src="https://img.shields.io/badge/赞助-%E2%9D%A4-pink?logo=github&style=for-the-badge" alt="在 GitHub 上赞助" /></a>
-</p>
-
 > [!IMPORTANT]
-> **Rust 移植正在进行中**，位于 [`dev/rust`](https://github.com/instructkr/claw-code/tree/dev/rust) 分支，预计今日合并到主分支。Rust 实现旨在提供更快、内存安全的 harness 运行时。敬请期待——这将成为项目的最终版本。
-
-> 如果您觉得这项工作有用，请考虑[在 GitHub 上赞助 @instructkr](https://github.com/sponsors/instructkr)，以支持持续的开源 harness 工程研究。
+> **Rust 移植正在进行中**，位于 `dev/rust` 分支，预计今日合并到主分支。Rust 实现旨在提供更快、内存安全的 harness 运行时。敬请期待——这将成为项目的最终版本。
 
 ---
 
@@ -76,8 +60,6 @@ cargo build --release
 结果是一个干净室（clean-room）Python 重写版本，它捕获了 Claw Code agent harness 的架构模式，而没有复制任何专有源代码。我现在正在积极与 [@bellman_ych](https://x.com/bellman_ych)——OmX 的创建者本人——合作推进此项目。基础 Python 框架已经建立并可以运行，但我们才刚刚开始。**敬请期待——一个更强大的版本即将到来。**
 
 Rust 移植使用 [oh-my-codex (OmX)](https://github.com/Yeachan-Heo/oh-my-codex) 和 [oh-my-opencode (OmO)](https://github.com/code-yeongyu/oh-my-openagent) 开发：OmX 驱动了脚手架、编排和架构方向，而 OmO 用于后期实现加速和验证支持。
-
-https://github.com/instructkr/claw-code
 
 ![推文截图](assets/tweet-screenshot.png)
 
@@ -230,10 +212,6 @@ python3 -m src.main tools --limit 10
 加入 [**instructkr Discord**](https://instruct.kr/) — 最好的韩语语言模型社区。来讨论 LLM、harness 工程、agent 工作流以及更多内容。
 
 [![Discord](https://img.shields.io/badge/加入%20Discord-instruct.kr-5865F2?logo=discord&style=for-the-badge)](https://instruct.kr/)
-
-## Star 历史
-
-请参见本 README 顶部的图表。
 
 ## 所有权/关联声明
 

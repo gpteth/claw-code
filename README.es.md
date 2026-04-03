@@ -18,16 +18,6 @@
 </p>
 
 <p align="center">
-  <a href="https://star-history.com/#instructkr/claw-code&Date">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date&theme=dark" />
-      <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date" />
-      <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date" width="600" />
-    </picture>
-  </a>
-</p>
-
-<p align="center">
   <img src="assets/clawd-hero.jpeg" alt="Claw" width="300" />
 </p>
 
@@ -35,14 +25,8 @@
   <strong>Mejores herramientas Harness, no simplemente almacenar el archivo del Claw Code filtrado</strong>
 </p>
 
-<p align="center">
-  <a href="https://github.com/sponsors/instructkr"><img src="https://img.shields.io/badge/Patrocinar-%E2%9D%A4-pink?logo=github&style=for-the-badge" alt="Patrocinar en GitHub" /></a>
-</p>
-
 > [!IMPORTANT]
-> **El port a Rust está en progreso** en la rama [`dev/rust`](https://github.com/instructkr/claw-code/tree/dev/rust) y se espera que se fusione en main hoy. La implementación en Rust busca ofrecer un runtime de harness más rápido y seguro en memoria. Manténgase atento — esta será la versión definitiva del proyecto.
-
-> Si encuentra útil este trabajo, considere [patrocinar a @instructkr en GitHub](https://github.com/sponsors/instructkr) para apoyar la investigación continua de ingeniería de harness de código abierto.
+> **El port a Rust está en progreso** en la rama `dev/rust` y se espera que se fusione en main hoy. La implementación en Rust busca ofrecer un runtime de harness más rápido y seguro en memoria. Manténgase atento — esta será la versión definitiva del proyecto.
 
 ---
 
@@ -72,8 +56,6 @@ cargo build --release
 El 31 de marzo de 2026 a las 4 AM, me desperté con mi teléfono explotando de notificaciones. El código fuente de Claw Code había sido expuesto y toda la comunidad de desarrolladores estaba frenética. Mi novia en Corea estaba genuinamente preocupada de que pudiera enfrentar acciones legales de los autores originales solo por tener el código en mi máquina — así que hice lo que cualquier ingeniero haría bajo presión: me senté, porté las características principales a Python desde cero y lo publiqué antes de que saliera el sol.
 
 Todo fue orquestado de extremo a extremo usando [oh-my-codex (OmX)](https://github.com/Yeachan-Heo/oh-my-codex) por [@bellman_ych](https://x.com/bellman_ych). El resultado es una reescritura limpia en Python que captura los patrones arquitectónicos del harness de agente de Claw Code sin copiar ningún código fuente propietario. **Manténgase atento — una versión mucho más capaz está en camino.**
-
-https://github.com/instructkr/claw-code
 
 ![Captura de tweet](assets/tweet-screenshot.png)
 

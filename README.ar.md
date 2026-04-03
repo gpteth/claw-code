@@ -18,16 +18,6 @@
 </p>
 
 <p align="center">
-  <a href="https://star-history.com/#instructkr/claw-code&Date">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date&theme=dark" />
-      <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date" />
-      <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date" width="600" />
-    </picture>
-  </a>
-</p>
-
-<p align="center">
   <img src="assets/clawd-hero.jpeg" alt="Claw" width="300" />
 </p>
 
@@ -35,14 +25,8 @@
   <strong>أدوات Harness أفضل، وليس مجرد تخزين أرشيف Claw Code المُسرّب</strong>
 </p>
 
-<p align="center">
-  <a href="https://github.com/sponsors/instructkr"><img src="https://img.shields.io/badge/رعاية-%E2%9D%A4-pink?logo=github&style=for-the-badge" alt="رعاية على GitHub" /></a>
-</p>
-
 > [!IMPORTANT]
-> **نقل Rust قيد التنفيذ الآن** على فرع [`dev/rust`](https://github.com/instructkr/claw-code/tree/dev/rust) ومن المتوقع دمجه في الفرع الرئيسي اليوم. يهدف تطبيق Rust إلى تقديم بيئة تشغيل harness أسرع وآمنة للذاكرة. ترقبوا — ستكون هذه النسخة النهائية للمشروع.
-
-> إذا وجدت هذا العمل مفيداً، فكر في [رعاية @instructkr على GitHub](https://github.com/sponsors/instructkr) لدعم أبحاث هندسة harness مفتوحة المصدر المستمرة.
+> **نقل Rust قيد التنفيذ الآن** على فرع `dev/rust` ومن المتوقع دمجه في الفرع الرئيسي اليوم. يهدف تطبيق Rust إلى تقديم بيئة تشغيل harness أسرع وآمنة للذاكرة. ترقبوا — ستكون هذه النسخة النهائية للمشروع.
 
 ---
 
@@ -72,8 +56,6 @@ cargo build --release
 في 31 مارس 2026 الساعة 4 صباحاً، استيقظت على هاتفي يفيض بالإشعارات. تم كشف الكود المصدري لـ Claw Code، وكان مجتمع المطورين بأكمله في حالة هيجان. كانت صديقتي في كوريا قلقة حقاً من أنني قد أواجه إجراءات قانونية من المؤلفين الأصليين لمجرد وجود الكود على جهازي — لذلك فعلت ما سيفعله أي مهندس تحت الضغط: جلست، نقلت الميزات الأساسية إلى Python من الصفر، ونشرتها قبل شروق الشمس.
 
 تم تنظيم كل شيء من البداية إلى النهاية باستخدام [oh-my-codex (OmX)](https://github.com/Yeachan-Heo/oh-my-codex) بواسطة [@bellman_ych](https://x.com/bellman_ych). النتيجة هي إعادة كتابة Python في غرفة نظيفة تلتقط الأنماط المعمارية لـ harness وكيل Claw Code دون نسخ أي كود مصدري مملوك. **ترقبوا — نسخة أكثر قدرة في الطريق.**
-
-https://github.com/instructkr/claw-code
 
 ![لقطة شاشة تغريدة](assets/tweet-screenshot.png)
 

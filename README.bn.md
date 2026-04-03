@@ -18,16 +18,6 @@
 </p>
 
 <p align="center">
-  <a href="https://star-history.com/#instructkr/claw-code&Date">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date&theme=dark" />
-      <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date" />
-      <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date" width="600" />
-    </picture>
-  </a>
-</p>
-
-<p align="center">
   <img src="assets/clawd-hero.jpeg" alt="Claw" width="300" />
 </p>
 
@@ -35,14 +25,8 @@
   <strong>উন্নত Harness টুল, শুধুমাত্র ফাঁস হওয়া Claw Code সংরক্ষণ নয়</strong>
 </p>
 
-<p align="center">
-  <a href="https://github.com/sponsors/instructkr"><img src="https://img.shields.io/badge/স্পনসর-%E2%9D%A4-pink?logo=github&style=for-the-badge" alt="GitHub-এ স্পনসর করুন" /></a>
-</p>
-
 > [!IMPORTANT]
-> **Rust পোর্ট এখন চলমান** [`dev/rust`](https://github.com/instructkr/claw-code/tree/dev/rust) শাখায় এবং আজ main-এ মার্জ হওয়ার প্রত্যাশা রয়েছে। Rust বাস্তবায়ন একটি দ্রুত, মেমোরি-নিরাপদ harness রানটাইম প্রদানের লক্ষ্য রাখে। অপেক্ষায় থাকুন — এটি প্রকল্পের চূড়ান্ত সংস্করণ হবে।
-
-> আপনি যদি এই কাজটি উপযোগী মনে করেন, তাহলে [GitHub-এ @instructkr-কে স্পনসর](https://github.com/sponsors/instructkr) করার কথা বিবেচনা করুন।
+> **Rust পোর্ট এখন চলমান** `dev/rust` শাখায় এবং আজ main-এ মার্জ হওয়ার প্রত্যাশা রয়েছে। Rust বাস্তবায়ন একটি দ্রুত, মেমোরি-নিরাপদ harness রানটাইম প্রদানের লক্ষ্য রাখে। অপেক্ষায় থাকুন — এটি প্রকল্পের চূড়ান্ত সংস্করণ হবে।
 
 ---
 
@@ -72,8 +56,6 @@ cargo build --release
 2026 সালের 31 মার্চ ভোর 4টায়, আমি আমার ফোনে বিজ্ঞপ্তির বন্যায় ঘুম থেকে উঠলাম। Claw Code সোর্স কোড ফাঁস হয়ে গিয়েছিল, এবং সমগ্র ডেভেলপার কমিউনিটি উত্তেজনায় ভাসছিল। কোরিয়ায় আমার বান্ধবী সত্যিই চিন্তিত ছিল যে শুধু আমার মেশিনে কোড থাকার জন্য আমি মূল লেখকদের কাছ থেকে আইনি পদক্ষেপের সম্মুখীন হতে পারি — তাই আমি যা করলাম তা হলো: বসে, মূল ফিচারগুলো শূন্য থেকে Python-এ পোর্ট করলাম, এবং সূর্য ওঠার আগে পুশ করলাম।
 
 ফলাফল হলো একটি ক্লিন-রুম Python পুনর্লিখন যা কোনো মালিকানাধীন সোর্স কোড কপি না করে Claw Code-এর এজেন্ট harness-এর আর্কিটেকচারাল প্যাটার্ন ক্যাপচার করে। **অপেক্ষায় থাকুন — আরও শক্তিশালী সংস্করণ আসছে।**
-
-https://github.com/instructkr/claw-code
 
 ![টুইট স্ক্রিনশট](assets/tweet-screenshot.png)
 
