@@ -128,16 +128,6 @@ Executar verificação:
 python3 -m unittest discover -s tests -v
 ```
 
-## Comunidade
-
-<p align="center">
-  <a href="https://instruct.kr/"><img src="assets/instructkr.png" alt="instructkr" width="400" /></a>
-</p>
-
-Junte-se ao [**Discord instructkr**](https://instruct.kr/) — a melhor comunidade coreana de modelos de linguagem.
-
-[![Discord](https://img.shields.io/badge/Entrar%20no%20Discord-instruct.kr-5865F2?logo=discord&style=for-the-badge)](https://instruct.kr/)
-
 ## Aviso de propriedade / afiliação
 
 - Este repositório **não** reivindica propriedade do material fonte original do Claw Code.

@@ -203,16 +203,6 @@ python3 -m src.main tools --limit 10
 
 *最终 README 措辞通过期间的分屏审查和验证流程。*
 
-## 社区
-
-<p align="center">
-  <a href="https://instruct.kr/"><img src="assets/instructkr.png" alt="instructkr" width="400" /></a>
-</p>
-
-加入 [**instructkr Discord**](https://instruct.kr/) — 最好的韩语语言模型社区。来讨论 LLM、harness 工程、agent 工作流以及更多内容。
-
-[![Discord](https://img.shields.io/badge/加入%20Discord-instruct.kr-5865F2?logo=discord&style=for-the-badge)](https://instruct.kr/)
-
 ## 所有权/关联声明
 
 - 本仓库**不**声称拥有原始 Claw Code 源材料的所有权。

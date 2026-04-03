@@ -128,16 +128,6 @@ python3 -m src.main manifest
 python3 -m unittest discover -s tests -v
 ```
 
-## সম্প্রদায়
-
-<p align="center">
-  <a href="https://instruct.kr/"><img src="assets/instructkr.png" alt="instructkr" width="400" /></a>
-</p>
-
-[**instructkr Discord**](https://instruct.kr/)-এ যোগ দিন — সেরা কোরীয় ভাষা মডেল সম্প্রদায়।
-
-[![Discord](https://img.shields.io/badge/Discord-এ%20যোগ%20দিন-instruct.kr-5865F2?logo=discord&style=for-the-badge)](https://instruct.kr/)
-
 ## মালিকানা / অনুমোদন দাবিত্যাগ
 
 - এই রিপোজিটরি মূল Claw Code সোর্স উপকরণের মালিকানা **দাবি করে না**।

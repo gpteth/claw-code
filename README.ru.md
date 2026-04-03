@@ -128,16 +128,6 @@ python3 -m src.main manifest
 python3 -m unittest discover -s tests -v
 ```
 
-## Сообщество
-
-<p align="center">
-  <a href="https://instruct.kr/"><img src="assets/instructkr.png" alt="instructkr" width="400" /></a>
-</p>
-
-Присоединяйтесь к [**Discord instructkr**](https://instruct.kr/) — лучшему корейскому сообществу языковых моделей.
-
-[![Discord](https://img.shields.io/badge/Присоединиться%20к%20Discord-instruct.kr-5865F2?logo=discord&style=for-the-badge)](https://instruct.kr/)
-
 ## Отказ от ответственности
 
 - Этот репозиторий **не** претендует на право собственности на оригинальные исходные материалы Claw Code.

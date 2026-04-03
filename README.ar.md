@@ -128,16 +128,6 @@ python3 -m src.main manifest
 python3 -m unittest discover -s tests -v
 ```
 
-## المجتمع
-
-<p align="center">
-  <a href="https://instruct.kr/"><img src="assets/instructkr.png" alt="instructkr" width="400" /></a>
-</p>
-
-انضم إلى [**Discord instructkr**](https://instruct.kr/) — أفضل مجتمع نماذج اللغة الكورية.
-
-[![Discord](https://img.shields.io/badge/انضم%20إلى%20Discord-instruct.kr-5865F2?logo=discord&style=for-the-badge)](https://instruct.kr/)
-
 ## إخلاء مسؤولية الملكية / الانتماء
 
 - هذا المستودع **لا** يدعي ملكية مواد Claw Code المصدرية الأصلية.

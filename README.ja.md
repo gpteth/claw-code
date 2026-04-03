@@ -128,16 +128,6 @@ python3 -m src.main manifest
 python3 -m unittest discover -s tests -v
 ```
 
-## コミュニティ
-
-<p align="center">
-  <a href="https://instruct.kr/"><img src="assets/instructkr.png" alt="instructkr" width="400" /></a>
-</p>
-
-[**instructkr Discord**](https://instruct.kr/) に参加しましょう — 最高の韓国語言語モデルコミュニティです。
-
-[![Discord](https://img.shields.io/badge/Discord%20に参加-instruct.kr-5865F2?logo=discord&style=for-the-badge)](https://instruct.kr/)
-
 ## 所有権 / 提携に関する免責事項
 
 - このリポジトリは、オリジナルの Claw Code ソースマテリアルの所有権を**主張しません**。
