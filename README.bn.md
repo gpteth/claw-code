@@ -1,0 +1,162 @@
+<p align="center">
+  <a href="README.md">English</a> |
+  <a href="README.zh.md">中文</a> |
+  <a href="README.hi.md">हिन्दी</a> |
+  <a href="README.es.md">Español</a> |
+  <a href="README.fr.md">Français</a> |
+  <a href="README.ar.md">العربية</a> |
+  <a href="README.bn.md">বাংলা</a> |
+  <a href="README.pt.md">Português</a> |
+  <a href="README.ru.md">Русский</a> |
+  <a href="README.ja.md">日本語</a>
+</p>
+
+# Claw Code প্রকল্পের পুনর্লিখন
+
+<p align="center">
+  <strong>⭐ ইতিহাসে সবচেয়ে দ্রুত রিপোজিটরি যা 50K তারকা অতিক্রম করেছে, প্রকাশের মাত্র 2 ঘন্টায় এই মাইলফলক অর্জন করেছে ⭐</strong>
+</p>
+
+<p align="center">
+  <a href="https://star-history.com/#instructkr/claw-code&Date">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date&theme=dark" />
+      <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date" />
+      <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date" width="600" />
+    </picture>
+  </a>
+</p>
+
+<p align="center">
+  <img src="assets/clawd-hero.jpeg" alt="Claw" width="300" />
+</p>
+
+<p align="center">
+  <strong>উন্নত Harness টুল, শুধুমাত্র ফাঁস হওয়া Claw Code সংরক্ষণ নয়</strong>
+</p>
+
+<p align="center">
+  <a href="https://github.com/sponsors/instructkr"><img src="https://img.shields.io/badge/স্পনসর-%E2%9D%A4-pink?logo=github&style=for-the-badge" alt="GitHub-এ স্পনসর করুন" /></a>
+</p>
+
+> [!IMPORTANT]
+> **Rust পোর্ট এখন চলমান** [`dev/rust`](https://github.com/instructkr/claw-code/tree/dev/rust) শাখায় এবং আজ main-এ মার্জ হওয়ার প্রত্যাশা রয়েছে। Rust বাস্তবায়ন একটি দ্রুত, মেমোরি-নিরাপদ harness রানটাইম প্রদানের লক্ষ্য রাখে। অপেক্ষায় থাকুন — এটি প্রকল্পের চূড়ান্ত সংস্করণ হবে।
+
+> আপনি যদি এই কাজটি উপযোগী মনে করেন, তাহলে [GitHub-এ @instructkr-কে স্পনসর](https://github.com/sponsors/instructkr) করার কথা বিবেচনা করুন।
+
+---
+
+## Rust পোর্ট
+
+`rust/`-এর অধীনে Rust ওয়ার্কস্পেস হলো প্রকল্পের বর্তমান সিস্টেম-ভাষা পোর্ট।
+
+এটি বর্তমানে অন্তর্ভুক্ত করে:
+
+- `crates/api-client` — প্রদানকারী বিমূর্তকরণ, OAuth, এবং স্ট্রিমিং সহ API ক্লায়েন্ট
+- `crates/runtime` — সেশন স্টেট, কম্প্যাকশন, MCP অর্কেস্ট্রেশন, প্রম্পট নির্মাণ
+- `crates/tools` — টুল ম্যানিফেস্ট সংজ্ঞা এবং এক্সিকিউশন ফ্রেমওয়ার্ক
+- `crates/commands` — স্ল্যাশ কমান্ড, স্কিল আবিষ্কার, এবং কনফিগারেশন পরিদর্শন
+- `crates/plugins` — প্লাগইন মডেল, হুক পাইপলাইন, এবং বান্ডেল করা প্লাগইন
+- `crates/compat-harness` — আপস্ট্রিম এডিটর ইন্টিগ্রেশনের জন্য সামঞ্জস্য স্তর
+- `crates/claw-cli` — ইন্টারেক্টিভ REPL, Markdown রেন্ডারিং, এবং প্রজেক্ট বুটস্ট্র্যাপ/ইনিট ফ্লো
+
+Rust বিল্ড চালান:
+
+```bash
+cd rust
+cargo build --release
+```
+
+## পটভূমি
+
+2026 সালের 31 মার্চ ভোর 4টায়, আমি আমার ফোনে বিজ্ঞপ্তির বন্যায় ঘুম থেকে উঠলাম। Claw Code সোর্স কোড ফাঁস হয়ে গিয়েছিল, এবং সমগ্র ডেভেলপার কমিউনিটি উত্তেজনায় ভাসছিল। কোরিয়ায় আমার বান্ধবী সত্যিই চিন্তিত ছিল যে শুধু আমার মেশিনে কোড থাকার জন্য আমি মূল লেখকদের কাছ থেকে আইনি পদক্ষেপের সম্মুখীন হতে পারি — তাই আমি যা করলাম তা হলো: বসে, মূল ফিচারগুলো শূন্য থেকে Python-এ পোর্ট করলাম, এবং সূর্য ওঠার আগে পুশ করলাম।
+
+ফলাফল হলো একটি ক্লিন-রুম Python পুনর্লিখন যা কোনো মালিকানাধীন সোর্স কোড কপি না করে Claw Code-এর এজেন্ট harness-এর আর্কিটেকচারাল প্যাটার্ন ক্যাপচার করে। **অপেক্ষায় থাকুন — আরও শক্তিশালী সংস্করণ আসছে।**
+
+https://github.com/instructkr/claw-code
+
+![টুইট স্ক্রিনশট](assets/tweet-screenshot.png)
+
+## নির্মাতারা ওয়াল স্ট্রিট জার্নালে
+
+আমি **harness ইঞ্জিনিয়ারিং**-এ গভীরভাবে আগ্রহী — এজেন্ট সিস্টেম কিভাবে টুল সংযুক্ত করে, কাজ অর্কেস্ট্রেট করে এবং রানটাইম প্রসঙ্গ পরিচালনা করে তা অধ্যয়ন করা।
+
+> — *ওয়াল স্ট্রিট জার্নাল*, 21 মার্চ 2026, [*"আমাদের সমগ্র জীবন স্বয়ংক্রিয় করার ট্রিলিয়ন ডলারের দৌড়"*](https://lnkd.in/gs9td3qd)
+
+![WSJ প্রতিবেদন](assets/wsj-feature.png)
+
+---
+
+## পোর্টিং অবস্থা
+
+প্রধান সোর্স ট্রি এখন Python-প্রথম।
+
+- `src/`-এ সক্রিয় Python পোর্টিং ওয়ার্কস্পেস রয়েছে
+- `tests/` বর্তমান Python ওয়ার্কস্পেস যাচাই করে
+- ফাঁস হওয়া স্ন্যাপশট আর ট্র্যাক করা রিপোজিটরি স্টেটের অংশ নয়
+
+## এই পুনর্লিখন কেন বিদ্যমান
+
+আমি মূলত ফাঁস হওয়া কোডবেস অধ্যয়ন করেছিলাম এর harness, টুল ওয়্যারিং এবং এজেন্ট ওয়ার্কফ্লো বোঝার জন্য। আইনি ও নৈতিক প্রশ্নে আরও সময় দেওয়ার পর, আমি চাইনি যে ফাঁস হওয়া স্ন্যাপশটই প্রধান ট্র্যাক করা সোর্স ট্রি হিসেবে থেকে যাক।
+
+## রিপোজিটরি লেআউট
+
+```text
+.
+├── src/                                # Python পোর্টিং ওয়ার্কস্পেস
+│   ├── __init__.py
+│   ├── commands.py
+│   ├── main.py
+│   ├── models.py
+│   ├── port_manifest.py
+│   ├── query_engine.py
+│   ├── task.py
+│   └── tools.py
+├── rust/                               # Rust পোর্ট (claw CLI)
+│   ├── crates/api/                     # API ক্লায়েন্ট + স্ট্রিমিং
+│   ├── crates/runtime/                 # সেশন, টুল, MCP, কনফিগ
+│   ├── crates/claw-cli/               # ইন্টারেক্টিভ CLI বাইনারি
+│   ├── crates/plugins/                 # প্লাগইন সিস্টেম
+│   ├── crates/commands/                # স্ল্যাশ কমান্ড
+│   ├── crates/server/                  # HTTP/SSE সার্ভার (axum)
+│   ├── crates/lsp/                    # LSP ক্লায়েন্ট ইন্টিগ্রেশন
+│   └── crates/tools/                   # টুল স্পেক
+├── tests/                              # Python যাচাইকরণ
+├── assets/omx/                         # OmX ওয়ার্কফ্লো স্ক্রিনশট
+└── README.md
+```
+
+## দ্রুত শুরু
+
+Python পোর্টিং সারাংশ রেন্ডার করুন:
+
+```bash
+python3 -m src.main summary
+```
+
+বর্তমান Python ওয়ার্কস্পেস ম্যানিফেস্ট প্রিন্ট করুন:
+
+```bash
+python3 -m src.main manifest
+```
+
+যাচাইকরণ চালান:
+
+```bash
+python3 -m unittest discover -s tests -v
+```
+
+## সম্প্রদায়
+
+<p align="center">
+  <a href="https://instruct.kr/"><img src="assets/instructkr.png" alt="instructkr" width="400" /></a>
+</p>
+
+[**instructkr Discord**](https://instruct.kr/)-এ যোগ দিন — সেরা কোরীয় ভাষা মডেল সম্প্রদায়।
+
+[![Discord](https://img.shields.io/badge/Discord-এ%20যোগ%20দিন-instruct.kr-5865F2?logo=discord&style=for-the-badge)](https://instruct.kr/)
+
+## মালিকানা / অনুমোদন দাবিত্যাগ
+
+- এই রিপোজিটরি মূল Claw Code সোর্স উপকরণের মালিকানা **দাবি করে না**।
+- এই রিপোজিটরি মূল লেখকদের সাথে **অনুমোদিত, সমর্থিত বা রক্ষণাবেক্ষণকৃত নয়**।

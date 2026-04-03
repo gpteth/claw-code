@@ -1,0 +1,162 @@
+<p align="center">
+  <a href="README.md">English</a> |
+  <a href="README.zh.md">中文</a> |
+  <a href="README.hi.md">हिन्दी</a> |
+  <a href="README.es.md">Español</a> |
+  <a href="README.fr.md">Français</a> |
+  <a href="README.ar.md">العربية</a> |
+  <a href="README.bn.md">বাংলা</a> |
+  <a href="README.pt.md">Português</a> |
+  <a href="README.ru.md">Русский</a> |
+  <a href="README.ja.md">日本語</a>
+</p>
+
+# Переписывание проекта Claw Code
+
+<p align="center">
+  <strong>⭐ Самый быстрый репозиторий в истории, превысивший 50K звёзд — этот рубеж достигнут всего за 2 часа после публикации ⭐</strong>
+</p>
+
+<p align="center">
+  <a href="https://star-history.com/#instructkr/claw-code&Date">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date&theme=dark" />
+      <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date" />
+      <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date" width="600" />
+    </picture>
+  </a>
+</p>
+
+<p align="center">
+  <img src="assets/clawd-hero.jpeg" alt="Claw" width="300" />
+</p>
+
+<p align="center">
+  <strong>Лучшие инструменты Harness, а не просто хранение архива утёкшего Claw Code</strong>
+</p>
+
+<p align="center">
+  <a href="https://github.com/sponsors/instructkr"><img src="https://img.shields.io/badge/Спонсировать-%E2%9D%A4-pink?logo=github&style=for-the-badge" alt="Спонсировать на GitHub" /></a>
+</p>
+
+> [!IMPORTANT]
+> **Порт на Rust сейчас в разработке** в ветке [`dev/rust`](https://github.com/instructkr/claw-code/tree/dev/rust) и ожидается слияние с main сегодня. Реализация на Rust нацелена на более быструю и безопасную для памяти среду выполнения harness. Следите за обновлениями — это будет окончательная версия проекта.
+
+> Если вы считаете эту работу полезной, рассмотрите [спонсирование @instructkr на GitHub](https://github.com/sponsors/instructkr) для поддержки непрерывных исследований в области open-source harness-инжиниринга.
+
+---
+
+## Порт на Rust
+
+Рабочее пространство Rust в каталоге `rust/` — это текущий порт проекта на системный язык.
+
+В настоящее время включает:
+
+- `crates/api-client` — API-клиент с абстракцией провайдера, OAuth и поддержкой потоковой передачи
+- `crates/runtime` — состояние сессии, компактификация, оркестрация MCP, построение промптов
+- `crates/tools` — определения манифеста инструментов и фреймворк выполнения
+- `crates/commands` — слэш-команды, обнаружение навыков и проверка конфигурации
+- `crates/plugins` — модель плагинов, конвейер хуков и встроенные плагины
+- `crates/compat-harness` — слой совместимости для интеграции с upstream-редактором
+- `crates/claw-cli` — интерактивный REPL, рендеринг Markdown и потоки инициализации проекта
+
+Запуск сборки Rust:
+
+```bash
+cd rust
+cargo build --release
+```
+
+## Предыстория
+
+31 марта 2026 года в 4 утра я проснулся от шквала уведомлений на телефоне. Исходный код Claw Code был раскрыт, и всё сообщество разработчиков было в ажиотаже. Моя девушка в Корее искренне беспокоилась, что я могу столкнуться с судебным преследованием со стороны оригинальных авторов просто за то, что код был на моей машине — поэтому я сделал то, что сделал бы любой инженер под давлением: сел, перенёс основные функции на Python с нуля и опубликовал до восхода солнца.
+
+Результат — чистая переписка на Python, которая улавливает архитектурные паттерны агентского harness Claw Code без копирования какого-либо проприетарного исходного кода. **Следите за обновлениями — гораздо более мощная версия уже в пути.**
+
+https://github.com/instructkr/claw-code
+
+![Скриншот твита](assets/tweet-screenshot.png)
+
+## Создатели в The Wall Street Journal
+
+Я глубоко заинтересован в **harness-инжиниринге** — изучении того, как агентские системы подключают инструменты, оркестрируют задачи и управляют контекстом выполнения.
+
+> — *The Wall Street Journal*, 21 марта 2026, [*«Триллионная гонка за автоматизацию всей нашей жизни»*](https://lnkd.in/gs9td3qd)
+
+![Статья WSJ](assets/wsj-feature.png)
+
+---
+
+## Статус портирования
+
+Основное дерево исходного кода теперь Python-first.
+
+- `src/` содержит активное рабочее пространство портирования Python
+- `tests/` верифицирует текущее рабочее пространство Python
+- Раскрытый снимок больше не является частью отслеживаемого состояния репозитория
+
+## Зачем нужна эта переписка
+
+Изначально я изучал раскрытую кодовую базу, чтобы понять её harness, подключение инструментов и рабочий процесс агентов. Проведя больше времени с юридическими и этическими вопросами, я не хотел, чтобы раскрытый снимок оставался основным отслеживаемым деревом исходного кода.
+
+## Структура репозитория
+
+```text
+.
+├── src/                                # Рабочее пространство портирования Python
+│   ├── __init__.py
+│   ├── commands.py
+│   ├── main.py
+│   ├── models.py
+│   ├── port_manifest.py
+│   ├── query_engine.py
+│   ├── task.py
+│   └── tools.py
+├── rust/                               # Порт Rust (claw CLI)
+│   ├── crates/api/                     # API-клиент + стриминг
+│   ├── crates/runtime/                 # Сессия, инструменты, MCP, конфиг
+│   ├── crates/claw-cli/               # Интерактивный бинарный CLI
+│   ├── crates/plugins/                 # Система плагинов
+│   ├── crates/commands/                # Слэш-команды
+│   ├── crates/server/                  # HTTP/SSE сервер (axum)
+│   ├── crates/lsp/                    # Интеграция LSP-клиента
+│   └── crates/tools/                   # Спецификации инструментов
+├── tests/                              # Верификация Python
+├── assets/omx/                         # Скриншоты рабочего процесса OmX
+└── README.md
+```
+
+## Быстрый старт
+
+Отрендерить сводку портирования Python:
+
+```bash
+python3 -m src.main summary
+```
+
+Напечатать текущий манифест рабочего пространства Python:
+
+```bash
+python3 -m src.main manifest
+```
+
+Запустить верификацию:
+
+```bash
+python3 -m unittest discover -s tests -v
+```
+
+## Сообщество
+
+<p align="center">
+  <a href="https://instruct.kr/"><img src="assets/instructkr.png" alt="instructkr" width="400" /></a>
+</p>
+
+Присоединяйтесь к [**Discord instructkr**](https://instruct.kr/) — лучшему корейскому сообществу языковых моделей.
+
+[![Discord](https://img.shields.io/badge/Присоединиться%20к%20Discord-instruct.kr-5865F2?logo=discord&style=for-the-badge)](https://instruct.kr/)
+
+## Отказ от ответственности
+
+- Этот репозиторий **не** претендует на право собственности на оригинальные исходные материалы Claw Code.
+- Этот репозиторий **не связан, не одобрен и не поддерживается оригинальными авторами**.

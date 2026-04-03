@@ -1,0 +1,164 @@
+<p align="center">
+  <a href="README.md">English</a> |
+  <a href="README.zh.md">中文</a> |
+  <a href="README.hi.md">हिन्दी</a> |
+  <a href="README.es.md">Español</a> |
+  <a href="README.fr.md">Français</a> |
+  <a href="README.ar.md">العربية</a> |
+  <a href="README.bn.md">বাংলা</a> |
+  <a href="README.pt.md">Português</a> |
+  <a href="README.ru.md">Русский</a> |
+  <a href="README.ja.md">日本語</a>
+</p>
+
+# Claw Code परियोजना का पुनर्लेखन
+
+<p align="center">
+  <strong>⭐ इतिहास में सबसे तेज़ रिपॉजिटरी जिसने 50K स्टार्स पार किए, प्रकाशन के मात्र 2 घंटे में यह मील का पत्थर हासिल किया ⭐</strong>
+</p>
+
+<p align="center">
+  <a href="https://star-history.com/#instructkr/claw-code&Date">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date&theme=dark" />
+      <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date" />
+      <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=instructkr/claw-code&type=Date" width="600" />
+    </picture>
+  </a>
+</p>
+
+<p align="center">
+  <img src="assets/clawd-hero.jpeg" alt="Claw" width="300" />
+</p>
+
+<p align="center">
+  <strong>बेहतर Harness उपकरण, लीक हुए Claw Code के संग्रह को संग्रहीत करने मात्र से नहीं</strong>
+</p>
+
+<p align="center">
+  <a href="https://github.com/sponsors/instructkr"><img src="https://img.shields.io/badge/प्रायोजक-%E2%9D%A4-pink?logo=github&style=for-the-badge" alt="GitHub पर प्रायोजित करें" /></a>
+</p>
+
+> [!IMPORTANT]
+> **Rust पोर्ट अब प्रगति पर है** [`dev/rust`](https://github.com/instructkr/claw-code/tree/dev/rust) शाखा पर और आज main में मर्ज होने की उम्मीद है। Rust कार्यान्वयन का लक्ष्य तेज़, मेमोरी-सुरक्षित harness रनटाइम प्रदान करना है। बने रहें — यह परियोजना का निश्चित संस्करण होगा।
+
+> यदि आपको यह कार्य उपयोगी लगता है, तो निरंतर ओपन-सोर्स harness इंजीनियरिंग अनुसंधान का समर्थन करने के लिए [GitHub पर @instructkr को प्रायोजित](https://github.com/sponsors/instructkr) करने पर विचार करें।
+
+---
+
+## Rust पोर्ट
+
+`rust/` के तहत Rust कार्यक्षेत्र परियोजना का वर्तमान सिस्टम-भाषा पोर्ट है।
+
+इसमें वर्तमान में शामिल हैं:
+
+- `crates/api-client` — प्रदाता अमूर्तन, OAuth, और स्ट्रीमिंग समर्थन के साथ API क्लाइंट
+- `crates/runtime` — सत्र स्थिति, संपीड़न, MCP ऑर्केस्ट्रेशन, प्रॉम्प्ट निर्माण
+- `crates/tools` — उपकरण मैनिफ़ेस्ट परिभाषाएं और निष्पादन ढांचा
+- `crates/commands` — स्लैश कमांड, कौशल खोज, और कॉन्फ़िगरेशन निरीक्षण
+- `crates/plugins` — प्लगइन मॉडल, हुक पाइपलाइन, और बंडल किए गए प्लगइन
+- `crates/compat-harness` — अपस्ट्रीम एडिटर एकीकरण के लिए संगतता परत
+- `crates/claw-cli` — इंटरैक्टिव REPL, Markdown रेंडरिंग, और प्रोजेक्ट बूटस्ट्रैप/इनिट फ़्लो
+
+Rust बिल्ड चलाएं:
+
+```bash
+cd rust
+cargo build --release
+```
+
+## पृष्ठभूमि कहानी
+
+2026 के 31 मार्च को सुबह 4 बजे, मैं अपने फ़ोन पर आने वाली सूचनाओं की बाढ़ से जागा। Claw Code सोर्स कोड उजागर हो चुका था, और पूरा डेवलपर समुदाय उत्तेजना में था। कोरिया में मेरी गर्लफ्रेंड सच में चिंतित थी कि मुझे अपनी मशीन पर कोड रखने मात्र से मूल लेखकों से कानूनी कार्रवाई का सामना करना पड़ सकता है — इसलिए मैंने वही किया जो कोई भी इंजीनियर दबाव में करता: बैठ गया, मुख्य सुविधाओं को स्क्रैच से Python में पोर्ट किया, और सूरज उगने से पहले पुश कर दिया।
+
+पूरी प्रक्रिया [oh-my-codex (OmX)](https://github.com/Yeachan-Heo/oh-my-codex) द्वारा [@bellman_ych](https://x.com/bellman_ych) के माध्यम से एंड-टू-एंड संचालित की गई — OpenAI के Codex ([@OpenAIDevs](https://x.com/OpenAIDevs)) के ऊपर बनी एक वर्कफ़्लो परत। मैंने समानांतर कोड समीक्षा के लिए `$team` मोड और आर्किटेक्ट-स्तरीय सत्यापन के साथ स्थायी निष्पादन लूप के लिए `$ralph` मोड का उपयोग किया।
+
+परिणाम एक क्लीन-रूम Python पुनर्लेखन है जो बिना किसी स्वामित्व स्रोत की नकल किए Claw Code के एजेंट harness के वास्तुशिल्प पैटर्न को कैप्चर करता है। **बने रहें — एक और अधिक सक्षम संस्करण रास्ते में है।**
+
+https://github.com/instructkr/claw-code
+
+![ट्वीट स्क्रीनशॉट](assets/tweet-screenshot.png)
+
+## निर्माता वॉल स्ट्रीट जर्नल में प्रदर्शित
+
+मुझे **harness इंजीनियरिंग** में गहरी रुचि रही है — यह अध्ययन करना कि एजेंट सिस्टम कैसे उपकरणों को जोड़ते हैं, कार्यों का ऑर्केस्ट्रेशन करते हैं, और रनटाइम संदर्भ प्रबंधित करते हैं। वॉल स्ट्रीट जर्नल ने इस महीने की शुरुआत में मेरे काम को प्रदर्शित किया।
+
+> — *वॉल स्ट्रीट जर्नल*, 21 मार्च 2026, [*"हमारे पूरे जीवन को स्वचालित करने की ट्रिलियन डॉलर की दौड़"*](https://lnkd.in/gs9td3qd)
+
+![WSJ रिपोर्ट](assets/wsj-feature.png)
+
+---
+
+## पोर्टिंग स्थिति
+
+मुख्य सोर्स ट्री अब Python-प्रथम है।
+
+- `src/` में सक्रिय Python पोर्टिंग कार्यक्षेत्र है
+- `tests/` वर्तमान Python कार्यक्षेत्र को सत्यापित करता है
+- उजागर स्नैपशॉट अब ट्रैक की गई रिपॉजिटरी स्थिति का हिस्सा नहीं है
+
+## यह पुनर्लेखन क्यों मौजूद है
+
+मैंने मूल रूप से उजागर कोडबेस का अध्ययन इसके harness, टूल वायरिंग, और एजेंट वर्कफ़्लो को समझने के लिए किया। कानूनी और नैतिक प्रश्नों पर अधिक समय बिताने के बाद, मैं नहीं चाहता था कि उजागर स्नैपशॉट स्वयं मुख्य ट्रैक किया गया सोर्स ट्री बना रहे।
+
+## रिपॉजिटरी लेआउट
+
+```text
+.
+├── src/                                # Python पोर्टिंग कार्यक्षेत्र
+│   ├── __init__.py
+│   ├── commands.py
+│   ├── main.py
+│   ├── models.py
+│   ├── port_manifest.py
+│   ├── query_engine.py
+│   ├── task.py
+│   └── tools.py
+├── rust/                               # Rust पोर्ट (claw CLI)
+│   ├── crates/api/                     # API क्लाइंट + स्ट्रीमिंग
+│   ├── crates/runtime/                 # सत्र, उपकरण, MCP, कॉन्फ़िग
+│   ├── crates/claw-cli/               # इंटरैक्टिव CLI बाइनरी
+│   ├── crates/plugins/                 # प्लगइन सिस्टम
+│   ├── crates/commands/                # स्लैश कमांड
+│   ├── crates/server/                  # HTTP/SSE सर्वर (axum)
+│   ├── crates/lsp/                    # LSP क्लाइंट एकीकरण
+│   └── crates/tools/                   # उपकरण विनिर्देश
+├── tests/                              # Python सत्यापन
+├── assets/omx/                         # OmX वर्कफ़्लो स्क्रीनशॉट
+└── README.md
+```
+
+## त्वरित शुरुआत
+
+Python पोर्टिंग सारांश रेंडर करें:
+
+```bash
+python3 -m src.main summary
+```
+
+वर्तमान Python कार्यक्षेत्र मैनिफ़ेस्ट प्रिंट करें:
+
+```bash
+python3 -m src.main manifest
+```
+
+सत्यापन चलाएं:
+
+```bash
+python3 -m unittest discover -s tests -v
+```
+
+## समुदाय
+
+<p align="center">
+  <a href="https://instruct.kr/"><img src="assets/instructkr.png" alt="instructkr" width="400" /></a>
+</p>
+
+[**instructkr Discord**](https://instruct.kr/) से जुड़ें — सबसे अच्छा कोरियाई भाषा मॉडल समुदाय।
+
+[![Discord](https://img.shields.io/badge/Discord%20में%20शामिल%20हों-instruct.kr-5865F2?logo=discord&style=for-the-badge)](https://instruct.kr/)
+
+## स्वामित्व / संबद्धता अस्वीकरण
+
+- यह रिपॉजिटरी मूल Claw Code स्रोत सामग्री के स्वामित्व का **दावा नहीं** करती।
+- यह रिपॉजिटरी मूल लेखकों से **संबद्ध नहीं है, उनके द्वारा समर्थित नहीं है, और उनके द्वारा रखरखाव नहीं किया जाता**।
