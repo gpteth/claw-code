@@ -19,7 +19,7 @@
   "error.title": "त्रुटि",
   "error.problem": "  समस्या           ",
   "error.problem_cont": "                   ",
-  "error.help": "  सहायता           claw --help",
+  "error.help": "  सहायता           clawcoder --help",
   "category.core": "मुख्य प्रवाह",
   "category.workspace": "कार्यक्षेत्र और स्मृति",
   "category.session": "सत्र और आउटपुट",

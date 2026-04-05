@@ -19,7 +19,7 @@
   "error.title": "Error",
   "error.problem": "  Problem          ",
   "error.problem_cont": "                   ",
-  "error.help": "  Help             claw --help",
+  "error.help": "  Help             clawcoder --help",
   "category.core": "Core flow",
   "category.workspace": "Workspace & memory",
   "category.session": "Sessions & output",

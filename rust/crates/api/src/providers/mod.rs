@@ -28,6 +28,7 @@ pub enum ProviderKind {
     ClawApi,
     Xai,
     OpenAi,
+    OpenRouter,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -42,55 +43,55 @@ const MODEL_REGISTRY: &[(&str, ProviderMetadata)] = &[
     (
         "opus",
         ProviderMetadata {
-            provider: ProviderKind::ClawApi,
-            auth_env: "ANTHROPIC_API_KEY",
-            base_url_env: "ANTHROPIC_BASE_URL",
-            default_base_url: claw_provider::DEFAULT_BASE_URL,
+            provider: ProviderKind::OpenRouter,
+            auth_env: "OPENROUTER_API_KEY",
+            base_url_env: "OPENROUTER_BASE_URL",
+            default_base_url: openai_compat::DEFAULT_OPENROUTER_BASE_URL,
         },
     ),
     (
         "sonnet",
         ProviderMetadata {
-            provider: ProviderKind::ClawApi,
-            auth_env: "ANTHROPIC_API_KEY",
-            base_url_env: "ANTHROPIC_BASE_URL",
-            default_base_url: claw_provider::DEFAULT_BASE_URL,
+            provider: ProviderKind::OpenRouter,
+            auth_env: "OPENROUTER_API_KEY",
+            base_url_env: "OPENROUTER_BASE_URL",
+            default_base_url: openai_compat::DEFAULT_OPENROUTER_BASE_URL,
         },
     ),
     (
         "haiku",
         ProviderMetadata {
-            provider: ProviderKind::ClawApi,
-            auth_env: "ANTHROPIC_API_KEY",
-            base_url_env: "ANTHROPIC_BASE_URL",
-            default_base_url: claw_provider::DEFAULT_BASE_URL,
+            provider: ProviderKind::OpenRouter,
+            auth_env: "OPENROUTER_API_KEY",
+            base_url_env: "OPENROUTER_BASE_URL",
+            default_base_url: openai_compat::DEFAULT_OPENROUTER_BASE_URL,
         },
     ),
     (
         "claude-opus-4-6",
         ProviderMetadata {
-            provider: ProviderKind::ClawApi,
-            auth_env: "ANTHROPIC_API_KEY",
-            base_url_env: "ANTHROPIC_BASE_URL",
-            default_base_url: claw_provider::DEFAULT_BASE_URL,
+            provider: ProviderKind::OpenRouter,
+            auth_env: "OPENROUTER_API_KEY",
+            base_url_env: "OPENROUTER_BASE_URL",
+            default_base_url: openai_compat::DEFAULT_OPENROUTER_BASE_URL,
         },
     ),
     (
         "claude-sonnet-4-6",
         ProviderMetadata {
-            provider: ProviderKind::ClawApi,
-            auth_env: "ANTHROPIC_API_KEY",
-            base_url_env: "ANTHROPIC_BASE_URL",
-            default_base_url: claw_provider::DEFAULT_BASE_URL,
+            provider: ProviderKind::OpenRouter,
+            auth_env: "OPENROUTER_API_KEY",
+            base_url_env: "OPENROUTER_BASE_URL",
+            default_base_url: openai_compat::DEFAULT_OPENROUTER_BASE_URL,
         },
     ),
     (
         "claude-haiku-4-5-20251213",
         ProviderMetadata {
-            provider: ProviderKind::ClawApi,
-            auth_env: "ANTHROPIC_API_KEY",
-            base_url_env: "ANTHROPIC_BASE_URL",
-            default_base_url: claw_provider::DEFAULT_BASE_URL,
+            provider: ProviderKind::OpenRouter,
+            auth_env: "OPENROUTER_API_KEY",
+            base_url_env: "OPENROUTER_BASE_URL",
+            default_base_url: openai_compat::DEFAULT_OPENROUTER_BASE_URL,
         },
     ),
     (
@@ -138,6 +139,150 @@ const MODEL_REGISTRY: &[(&str, ProviderMetadata)] = &[
             default_base_url: openai_compat::DEFAULT_XAI_BASE_URL,
         },
     ),
+    (
+        "openrouter/auto",
+        ProviderMetadata {
+            provider: ProviderKind::OpenRouter,
+            auth_env: "OPENROUTER_API_KEY",
+            base_url_env: "OPENROUTER_BASE_URL",
+            default_base_url: openai_compat::DEFAULT_OPENROUTER_BASE_URL,
+        },
+    ),
+    (
+        "openrouter/free",
+        ProviderMetadata {
+            provider: ProviderKind::OpenRouter,
+            auth_env: "OPENROUTER_API_KEY",
+            base_url_env: "OPENROUTER_BASE_URL",
+            default_base_url: openai_compat::DEFAULT_OPENROUTER_BASE_URL,
+        },
+    ),
+    (
+        "qwen/qwen3.6-plus:free",
+        ProviderMetadata {
+            provider: ProviderKind::OpenRouter,
+            auth_env: "OPENROUTER_API_KEY",
+            base_url_env: "OPENROUTER_BASE_URL",
+            default_base_url: openai_compat::DEFAULT_OPENROUTER_BASE_URL,
+        },
+    ),
+    (
+        "nvidia/nemotron-3-super-120b-a12b:free",
+        ProviderMetadata {
+            provider: ProviderKind::OpenRouter,
+            auth_env: "OPENROUTER_API_KEY",
+            base_url_env: "OPENROUTER_BASE_URL",
+            default_base_url: openai_compat::DEFAULT_OPENROUTER_BASE_URL,
+        },
+    ),
+    (
+        "minimax/minimax-m2.5:free",
+        ProviderMetadata {
+            provider: ProviderKind::OpenRouter,
+            auth_env: "OPENROUTER_API_KEY",
+            base_url_env: "OPENROUTER_BASE_URL",
+            default_base_url: openai_compat::DEFAULT_OPENROUTER_BASE_URL,
+        },
+    ),
+    (
+        "stepfun/step-3.5-flash:free",
+        ProviderMetadata {
+            provider: ProviderKind::OpenRouter,
+            auth_env: "OPENROUTER_API_KEY",
+            base_url_env: "OPENROUTER_BASE_URL",
+            default_base_url: openai_compat::DEFAULT_OPENROUTER_BASE_URL,
+        },
+    ),
+    (
+        "nvidia/nemotron-3-nano-30b-a3b:free",
+        ProviderMetadata {
+            provider: ProviderKind::OpenRouter,
+            auth_env: "OPENROUTER_API_KEY",
+            base_url_env: "OPENROUTER_BASE_URL",
+            default_base_url: openai_compat::DEFAULT_OPENROUTER_BASE_URL,
+        },
+    ),
+    (
+        "anthropic/claude-opus-4-6",
+        ProviderMetadata {
+            provider: ProviderKind::OpenRouter,
+            auth_env: "OPENROUTER_API_KEY",
+            base_url_env: "OPENROUTER_BASE_URL",
+            default_base_url: openai_compat::DEFAULT_OPENROUTER_BASE_URL,
+        },
+    ),
+    (
+        "anthropic/claude-sonnet-4-6",
+        ProviderMetadata {
+            provider: ProviderKind::OpenRouter,
+            auth_env: "OPENROUTER_API_KEY",
+            base_url_env: "OPENROUTER_BASE_URL",
+            default_base_url: openai_compat::DEFAULT_OPENROUTER_BASE_URL,
+        },
+    ),
+    (
+        "anthropic/claude-sonnet-4",
+        ProviderMetadata {
+            provider: ProviderKind::OpenRouter,
+            auth_env: "OPENROUTER_API_KEY",
+            base_url_env: "OPENROUTER_BASE_URL",
+            default_base_url: openai_compat::DEFAULT_OPENROUTER_BASE_URL,
+        },
+    ),
+    (
+        "anthropic/claude-opus-4",
+        ProviderMetadata {
+            provider: ProviderKind::OpenRouter,
+            auth_env: "OPENROUTER_API_KEY",
+            base_url_env: "OPENROUTER_BASE_URL",
+            default_base_url: openai_compat::DEFAULT_OPENROUTER_BASE_URL,
+        },
+    ),
+    (
+        "anthropic/claude-haiku-4-5",
+        ProviderMetadata {
+            provider: ProviderKind::OpenRouter,
+            auth_env: "OPENROUTER_API_KEY",
+            base_url_env: "OPENROUTER_BASE_URL",
+            default_base_url: openai_compat::DEFAULT_OPENROUTER_BASE_URL,
+        },
+    ),
+    (
+        "anthropic/claude-haiku-4",
+        ProviderMetadata {
+            provider: ProviderKind::OpenRouter,
+            auth_env: "OPENROUTER_API_KEY",
+            base_url_env: "OPENROUTER_BASE_URL",
+            default_base_url: openai_compat::DEFAULT_OPENROUTER_BASE_URL,
+        },
+    ),
+    (
+        "openai/gpt-4o",
+        ProviderMetadata {
+            provider: ProviderKind::OpenRouter,
+            auth_env: "OPENROUTER_API_KEY",
+            base_url_env: "OPENROUTER_BASE_URL",
+            default_base_url: openai_compat::DEFAULT_OPENROUTER_BASE_URL,
+        },
+    ),
+    (
+        "google/gemini-2.5-pro",
+        ProviderMetadata {
+            provider: ProviderKind::OpenRouter,
+            auth_env: "OPENROUTER_API_KEY",
+            base_url_env: "OPENROUTER_BASE_URL",
+            default_base_url: openai_compat::DEFAULT_OPENROUTER_BASE_URL,
+        },
+    ),
+    (
+        "deepseek/deepseek-r1",
+        ProviderMetadata {
+            provider: ProviderKind::OpenRouter,
+            auth_env: "OPENROUTER_API_KEY",
+            base_url_env: "OPENROUTER_BASE_URL",
+            default_base_url: openai_compat::DEFAULT_OPENROUTER_BASE_URL,
+        },
+    ),
 ];
 
 #[must_use]
@@ -161,6 +306,16 @@ pub fn resolve_model_alias(model: &str) -> String {
                     _ => trimmed,
                 },
                 ProviderKind::OpenAi => trimmed,
+                ProviderKind::OpenRouter => match *alias {
+                    // Short aliases resolve to OpenRouter model IDs
+                    "opus" => "anthropic/claude-opus-4-6",
+                    "sonnet" => "anthropic/claude-sonnet-4-6",
+                    "haiku" => "anthropic/claude-haiku-4-5",
+                    "claude-opus-4-6" => "anthropic/claude-opus-4-6",
+                    "claude-sonnet-4-6" => "anthropic/claude-sonnet-4-6",
+                    "claude-haiku-4-5-20251213" => "anthropic/claude-haiku-4-5",
+                    _ => trimmed,
+                },
             })
         })
         .map_or_else(|| trimmed.to_string(), ToOwned::to_owned)
@@ -181,6 +336,16 @@ pub fn metadata_for_model(model: &str) -> Option<ProviderMetadata> {
             default_base_url: openai_compat::DEFAULT_XAI_BASE_URL,
         });
     }
+    // Models with provider prefix (e.g. "anthropic/claude-sonnet-4", "openai/gpt-4o")
+    // are routed through OpenRouter
+    if lower.contains('/') {
+        return Some(ProviderMetadata {
+            provider: ProviderKind::OpenRouter,
+            auth_env: "OPENROUTER_API_KEY",
+            base_url_env: "OPENROUTER_BASE_URL",
+            default_base_url: openai_compat::DEFAULT_OPENROUTER_BASE_URL,
+        });
+    }
     None
 }
 
@@ -188,6 +353,10 @@ pub fn metadata_for_model(model: &str) -> Option<ProviderMetadata> {
 pub fn detect_provider_kind(model: &str) -> ProviderKind {
     if let Some(metadata) = metadata_for_model(model) {
         return metadata.provider;
+    }
+    // When no model match, prefer OpenRouter if its key is set
+    if openai_compat::has_api_key("OPENROUTER_API_KEY") {
+        return ProviderKind::OpenRouter;
     }
     if claw_provider::has_auth_from_env_or_saved().unwrap_or(false) {
         return ProviderKind::ClawApi;
@@ -204,8 +373,15 @@ pub fn detect_provider_kind(model: &str) -> ProviderKind {
 #[must_use]
 pub fn max_tokens_for_model(model: &str) -> u32 {
     let canonical = resolve_model_alias(model);
-    if canonical.contains("opus") {
+    let lower = canonical.to_ascii_lowercase();
+    if lower.contains("opus") {
         32_000
+    } else if lower.contains("qwen3.6") {
+        64_000 // 1M context, 64K output
+    } else if lower.contains("nemotron-3-super") {
+        32_000
+    } else if lower.contains("minimax") {
+        64_000
     } else {
         64_000
     }
@@ -213,7 +389,10 @@ pub fn max_tokens_for_model(model: &str) -> u32 {
 
 #[cfg(test)]
 mod tests {
-    use super::{detect_provider_kind, max_tokens_for_model, resolve_model_alias, ProviderKind};
+    use super::{
+        detect_provider_kind, max_tokens_for_model, metadata_for_model, resolve_model_alias,
+        ProviderKind,
+    };
 
     #[test]
     fn resolves_grok_aliases() {
@@ -227,7 +406,11 @@ mod tests {
         assert_eq!(detect_provider_kind("grok"), ProviderKind::Xai);
         assert_eq!(
             detect_provider_kind("claude-sonnet-4-6"),
-            ProviderKind::ClawApi
+            ProviderKind::OpenRouter
+        );
+        assert_eq!(
+            detect_provider_kind("claude-opus-4-6"),
+            ProviderKind::OpenRouter
         );
     }
 
@@ -235,5 +418,63 @@ mod tests {
     fn keeps_existing_max_token_heuristic() {
         assert_eq!(max_tokens_for_model("opus"), 32_000);
         assert_eq!(max_tokens_for_model("grok-3"), 64_000);
+    }
+
+    #[test]
+    fn detects_openrouter_from_registered_models() {
+        assert_eq!(
+            detect_provider_kind("anthropic/claude-sonnet-4"),
+            ProviderKind::OpenRouter
+        );
+        assert_eq!(
+            detect_provider_kind("openai/gpt-4o"),
+            ProviderKind::OpenRouter
+        );
+        assert_eq!(
+            detect_provider_kind("google/gemini-2.5-pro"),
+            ProviderKind::OpenRouter
+        );
+        assert_eq!(
+            detect_provider_kind("deepseek/deepseek-r1"),
+            ProviderKind::OpenRouter
+        );
+    }
+
+    #[test]
+    fn slash_prefixed_models_route_to_openrouter() {
+        let meta = metadata_for_model("meta-llama/llama-3-70b");
+        assert!(meta.is_some());
+        assert_eq!(meta.unwrap().provider, ProviderKind::OpenRouter);
+    }
+
+    #[test]
+    fn resolves_openrouter_models_passthrough() {
+        assert_eq!(
+            resolve_model_alias("anthropic/claude-sonnet-4"),
+            "anthropic/claude-sonnet-4"
+        );
+        assert_eq!(resolve_model_alias("openrouter/auto"), "openrouter/auto");
+    }
+
+    #[test]
+    fn detects_opus_4_6_via_openrouter() {
+        assert_eq!(
+            detect_provider_kind("anthropic/claude-opus-4-6"),
+            ProviderKind::OpenRouter
+        );
+        assert_eq!(
+            detect_provider_kind("anthropic/claude-sonnet-4-6"),
+            ProviderKind::OpenRouter
+        );
+        assert_eq!(
+            detect_provider_kind("anthropic/claude-haiku-4-5"),
+            ProviderKind::OpenRouter
+        );
+    }
+
+    #[test]
+    fn max_tokens_for_opus_4_6_via_openrouter() {
+        assert_eq!(max_tokens_for_model("anthropic/claude-opus-4-6"), 32_000);
+        assert_eq!(max_tokens_for_model("anthropic/claude-sonnet-4-6"), 64_000);
     }
 }

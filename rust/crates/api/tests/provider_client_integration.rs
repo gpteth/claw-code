@@ -1,7 +1,7 @@
 use std::ffi::OsString;
 use std::sync::{Mutex, OnceLock};
 
-use api::{read_xai_base_url, ApiError, AuthSource, ProviderClient, ProviderKind};
+use api::{read_xai_base_url, ApiError, ProviderClient, ProviderKind};
 
 #[test]
 fn provider_client_routes_grok_aliases_through_xai() {
@@ -31,18 +31,17 @@ fn provider_client_reports_missing_xai_credentials_for_grok_models() {
 }
 
 #[test]
-fn provider_client_uses_explicit_auth_without_env_lookup() {
+fn provider_client_routes_claude_aliases_through_openrouter() {
     let _lock = env_lock();
-    let _api_key = EnvVarGuard::set("ANTHROPIC_API_KEY", None);
-    let _auth_token = EnvVarGuard::set("ANTHROPIC_AUTH_TOKEN", None);
+    let _or_key = EnvVarGuard::set("OPENROUTER_API_KEY", Some("or-test-key"));
 
-    let client = ProviderClient::from_model_with_default_auth(
-        "claude-sonnet-4-6",
-        Some(AuthSource::ApiKey("claw-test-key".to_string())),
-    )
-    .expect("explicit auth should avoid env lookup");
+    let client =
+        ProviderClient::from_model("claude-sonnet-4-6").expect("claude alias should resolve");
+    assert_eq!(client.provider_kind(), ProviderKind::OpenRouter);
 
-    assert_eq!(client.provider_kind(), ProviderKind::ClawApi);
+    let client2 =
+        ProviderClient::from_model("opus").expect("opus alias should resolve");
+    assert_eq!(client2.provider_kind(), ProviderKind::OpenRouter);
 }
 
 #[test]

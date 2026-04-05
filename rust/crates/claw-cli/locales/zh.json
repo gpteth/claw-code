@@ -19,7 +19,7 @@
   "error.title": "错误",
   "error.problem": "  问题             ",
   "error.problem_cont": "                   ",
-  "error.help": "  帮助             claw --help",
+  "error.help": "  帮助             clawcoder --help",
   "category.core": "核心流程",
   "category.workspace": "工作区与记忆",
   "category.session": "会话与输出",

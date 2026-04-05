@@ -23,6 +23,7 @@ pub enum ProviderClient {
     ClawApi(ClawApiClient),
     Xai(OpenAiCompatClient),
     OpenAi(OpenAiCompatClient),
+    OpenRouter(OpenAiCompatClient),
 }
 
 impl ProviderClient {
@@ -34,6 +35,12 @@ impl ProviderClient {
         model: &str,
         default_auth: Option<AuthSource>,
     ) -> Result<Self, ApiError> {
+        // If CLAW_GATEWAY_URL is set, route all requests through the gateway.
+        // This allows the CLI to use the gateway as a managed proxy.
+        if let Some(gateway) = Self::gateway_client() {
+            return Ok(gateway);
+        }
+
         let resolved_model = providers::resolve_model_alias(model);
         match providers::detect_provider_kind(&resolved_model) {
             ProviderKind::ClawApi => Ok(Self::ClawApi(match default_auth {
@@ -46,7 +53,25 @@ impl ProviderClient {
             ProviderKind::OpenAi => Ok(Self::OpenAi(OpenAiCompatClient::from_env(
                 OpenAiCompatConfig::openai(),
             )?)),
+            ProviderKind::OpenRouter => Ok(Self::OpenRouter(OpenAiCompatClient::from_env(
+                OpenAiCompatConfig::openrouter(),
+            )?)),
         }
+    }
+
+    /// Check if a gateway URL is configured and create a client for it.
+    fn gateway_client() -> Option<Self> {
+        let gateway_url = std::env::var("CLAW_GATEWAY_URL").ok().filter(|v| !v.is_empty())?;
+        let gateway_key = std::env::var("CLAW_GATEWAY_KEY").ok().filter(|v| !v.is_empty())?;
+        let config = OpenAiCompatConfig {
+            provider_name: "ClawGateway",
+            api_key_env: "CLAW_GATEWAY_KEY",
+            base_url_env: "CLAW_GATEWAY_URL",
+            default_base_url: "",
+        };
+        let client = OpenAiCompatClient::new(gateway_key, config)
+            .with_base_url(gateway_url.trim_end_matches('/').to_string() + "/v1");
+        Some(Self::OpenRouter(client))
     }
 
     #[must_use]
@@ -55,6 +80,7 @@ impl ProviderClient {
             Self::ClawApi(_) => ProviderKind::ClawApi,
             Self::Xai(_) => ProviderKind::Xai,
             Self::OpenAi(_) => ProviderKind::OpenAi,
+            Self::OpenRouter(_) => ProviderKind::OpenRouter,
         }
     }
 
@@ -64,7 +90,9 @@ impl ProviderClient {
     ) -> Result<MessageResponse, ApiError> {
         match self {
             Self::ClawApi(client) => send_via_provider(client, request).await,
-            Self::Xai(client) | Self::OpenAi(client) => send_via_provider(client, request).await,
+            Self::Xai(client) | Self::OpenAi(client) | Self::OpenRouter(client) => {
+                send_via_provider(client, request).await
+            }
         }
     }
 
@@ -76,9 +104,11 @@ impl ProviderClient {
             Self::ClawApi(client) => stream_via_provider(client, request)
                 .await
                 .map(MessageStream::ClawApi),
-            Self::Xai(client) | Self::OpenAi(client) => stream_via_provider(client, request)
-                .await
-                .map(MessageStream::OpenAiCompat),
+            Self::Xai(client) | Self::OpenAi(client) | Self::OpenRouter(client) => {
+                stream_via_provider(client, request)
+                    .await
+                    .map(MessageStream::OpenAiCompat)
+            }
         }
     }
 }
@@ -119,13 +149,19 @@ pub fn read_xai_base_url() -> String {
     openai_compat::read_base_url(OpenAiCompatConfig::xai())
 }
 
+#[must_use]
+pub fn read_openrouter_base_url() -> String {
+    openai_compat::read_base_url(OpenAiCompatConfig::openrouter())
+}
+
 #[cfg(test)]
 mod tests {
     use crate::providers::{detect_provider_kind, resolve_model_alias, ProviderKind};
 
     #[test]
     fn resolves_existing_and_grok_aliases() {
-        assert_eq!(resolve_model_alias("opus"), "claude-opus-4-6");
+        assert_eq!(resolve_model_alias("opus"), "anthropic/claude-opus-4-6");
+        assert_eq!(resolve_model_alias("sonnet"), "anthropic/claude-sonnet-4-6");
         assert_eq!(resolve_model_alias("grok"), "grok-3");
         assert_eq!(resolve_model_alias("grok-mini"), "grok-3-mini");
     }
@@ -135,7 +171,11 @@ mod tests {
         assert_eq!(detect_provider_kind("grok-3"), ProviderKind::Xai);
         assert_eq!(
             detect_provider_kind("claude-sonnet-4-6"),
-            ProviderKind::ClawApi
+            ProviderKind::OpenRouter
+        );
+        assert_eq!(
+            detect_provider_kind("opus"),
+            ProviderKind::OpenRouter
         );
     }
 }

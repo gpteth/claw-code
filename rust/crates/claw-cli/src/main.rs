@@ -17,9 +17,10 @@ use std::thread;
 use std::time::{Duration, Instant, SystemTime, UNIX_EPOCH};
 
 use api::{
-    resolve_startup_auth_source, AuthSource, ClawApiClient, ContentBlockDelta, InputContentBlock,
-    InputMessage, MessageRequest, MessageResponse, OutputContentBlock,
-    StreamEvent as ApiStreamEvent, ToolChoice, ToolDefinition, ToolResultContentBlock,
+    detect_provider_kind, resolve_startup_auth_source, AuthSource, ClawApiClient,
+    ContentBlockDelta, InputContentBlock, InputMessage, MessageRequest, MessageResponse,
+    OutputContentBlock, ProviderClient, ProviderKind, StreamEvent as ApiStreamEvent, ToolChoice,
+    ToolDefinition, ToolResultContentBlock,
 };
 
 use commands::{
@@ -42,7 +43,7 @@ use runtime::{
 use serde_json::json;
 use tools::GlobalToolRegistry;
 
-const DEFAULT_MODEL: &str = "claude-opus-4-6";
+const DEFAULT_MODEL: &str = "qwen/qwen3.6-plus:free";
 fn max_tokens_for_model(model: &str) -> u32 {
     if model.contains("opus") {
         32_000
@@ -387,9 +388,20 @@ fn format_direct_slash_command_error(command: &str, is_unknown: bool) -> String 
 
 fn resolve_model_alias(model: &str) -> &str {
     match model {
-        "opus" => "claude-opus-4-6",
-        "sonnet" => "claude-sonnet-4-6",
-        "haiku" => "claude-haiku-4-5-20251213",
+        // Free models (OpenRouter)
+        "free" => "openrouter/free",
+        "qwen" | "qwen-free" => "qwen/qwen3.6-plus:free",
+        "nemotron" | "nemotron-free" => "nvidia/nemotron-3-super-120b-a12b:free",
+        "minimax" | "minimax-free" => "minimax/minimax-m2.5:free",
+        "step" | "step-free" => "stepfun/step-3.5-flash:free",
+        "nemotron-nano" => "nvidia/nemotron-3-nano-30b-a3b:free",
+        // Paid Claude models (OpenRouter)
+        "opus" => "anthropic/claude-opus-4-6",
+        "sonnet" => "anthropic/claude-sonnet-4-6",
+        "haiku" => "anthropic/claude-haiku-4-5",
+        "claude-opus-4-6" => "anthropic/claude-opus-4-6",
+        "claude-sonnet-4-6" => "anthropic/claude-sonnet-4-6",
+        "claude-haiku-4-5-20251213" => "anthropic/claude-haiku-4-5",
         _ => model,
     }
 }
@@ -2510,7 +2522,7 @@ fn render_version_report() -> String {
     let git_sha = GIT_SHA.unwrap_or("unknown");
     let target = BUILD_TARGET.unwrap_or("unknown");
     format!(
-        "Claw Code\n  Version          {VERSION}\n  Git SHA          {git_sha}\n  Target           {target}\n  Build date       {DEFAULT_DATE}\n\nSupport\n  Help             claw --help\n  REPL             /help"
+        "ClawCoder\n  Version          {VERSION}\n  Git SHA          {git_sha}\n  Target           {target}\n  Build date       {DEFAULT_DATE}\n\nSupport\n  Help             clawcoder --help\n  REPL             /help"
     )
 }
 
@@ -3063,7 +3075,7 @@ impl runtime::PermissionPrompter for CliPermissionPrompter {
 
 struct DefaultRuntimeClient {
     runtime: tokio::runtime::Runtime,
-    client: ClawApiClient,
+    client: ProviderClient,
     model: String,
     enable_tools: bool,
     emit_output: bool,
@@ -3081,10 +3093,18 @@ impl DefaultRuntimeClient {
         tool_registry: GlobalToolRegistry,
         progress_reporter: Option<InternalPromptProgressReporter>,
     ) -> Result<Self, Box<dyn std::error::Error>> {
+        let resolved = api::resolve_model_alias(&model);
+        let provider_kind = detect_provider_kind(&resolved);
+        let client = match provider_kind {
+            ProviderKind::ClawApi => {
+                let auth = resolve_cli_auth_source()?;
+                ProviderClient::from_model_with_default_auth(&model, Some(auth))?
+            }
+            _ => ProviderClient::from_model(&model)?,
+        };
         Ok(Self {
             runtime: tokio::runtime::Runtime::new()?,
-            client: ClawApiClient::from_auth(resolve_cli_auth_source()?)
-                .with_base_url(api::read_base_url()),
+            client,
             model,
             enable_tools,
             emit_output,
@@ -4238,7 +4258,7 @@ mod tests {
             parse_args(&args).expect("args should parse"),
             CliAction::Prompt {
                 prompt: "explain this".to_string(),
-                model: "claude-opus-4-6".to_string(),
+                model: "anthropic/claude-opus-4-6".to_string(),
                 output_format: CliOutputFormat::Text,
                 allowed_tools: None,
                 permission_mode: PermissionMode::DangerFullAccess,
@@ -4248,9 +4268,9 @@ mod tests {
 
     #[test]
     fn resolves_known_model_aliases() {
-        assert_eq!(resolve_model_alias("opus"), "claude-opus-4-6");
-        assert_eq!(resolve_model_alias("sonnet"), "claude-sonnet-4-6");
-        assert_eq!(resolve_model_alias("haiku"), "claude-haiku-4-5-20251213");
+        assert_eq!(resolve_model_alias("opus"), "anthropic/claude-opus-4-6");
+        assert_eq!(resolve_model_alias("sonnet"), "anthropic/claude-sonnet-4-6");
+        assert_eq!(resolve_model_alias("haiku"), "anthropic/claude-haiku-4-5");
         assert_eq!(resolve_model_alias("custom-opus"), "custom-opus");
     }
 
@@ -5009,7 +5029,7 @@ mod tests {
             MessageResponse {
                 id: "msg-1".to_string(),
                 kind: "message".to_string(),
-                model: "claude-opus-4-6".to_string(),
+                model: "anthropic/claude-opus-4-6".to_string(),
                 role: "assistant".to_string(),
                 content: vec![OutputContentBlock::ToolUse {
                     id: "tool-1".to_string(),
@@ -5044,7 +5064,7 @@ mod tests {
             MessageResponse {
                 id: "msg-2".to_string(),
                 kind: "message".to_string(),
-                model: "claude-opus-4-6".to_string(),
+                model: "anthropic/claude-opus-4-6".to_string(),
                 role: "assistant".to_string(),
                 content: vec![OutputContentBlock::ToolUse {
                     id: "tool-2".to_string(),
@@ -5079,7 +5099,7 @@ mod tests {
             MessageResponse {
                 id: "msg-3".to_string(),
                 kind: "message".to_string(),
-                model: "claude-opus-4-6".to_string(),
+                model: "anthropic/claude-opus-4-6".to_string(),
                 role: "assistant".to_string(),
                 content: vec![
                     OutputContentBlock::Thinking {

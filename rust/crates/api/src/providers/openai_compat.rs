@@ -16,6 +16,7 @@ use super::{Provider, ProviderFuture};
 
 pub const DEFAULT_XAI_BASE_URL: &str = "https://api.x.ai/v1";
 pub const DEFAULT_OPENAI_BASE_URL: &str = "https://api.openai.com/v1";
+pub const DEFAULT_OPENROUTER_BASE_URL: &str = "https://openrouter.ai/api/v1";
 const REQUEST_ID_HEADER: &str = "request-id";
 const ALT_REQUEST_ID_HEADER: &str = "x-request-id";
 const DEFAULT_INITIAL_BACKOFF: Duration = Duration::from_millis(200);
@@ -32,6 +33,7 @@ pub struct OpenAiCompatConfig {
 
 const XAI_ENV_VARS: &[&str] = &["XAI_API_KEY"];
 const OPENAI_ENV_VARS: &[&str] = &["OPENAI_API_KEY"];
+const OPENROUTER_ENV_VARS: &[&str] = &["OPENROUTER_API_KEY"];
 
 impl OpenAiCompatConfig {
     #[must_use]
@@ -54,10 +56,21 @@ impl OpenAiCompatConfig {
         }
     }
     #[must_use]
+    pub const fn openrouter() -> Self {
+        Self {
+            provider_name: "OpenRouter",
+            api_key_env: "OPENROUTER_API_KEY",
+            base_url_env: "OPENROUTER_BASE_URL",
+            default_base_url: DEFAULT_OPENROUTER_BASE_URL,
+        }
+    }
+
+    #[must_use]
     pub fn credential_env_vars(self) -> &'static [&'static str] {
         match self.provider_name {
             "xAI" => XAI_ENV_VARS,
             "OpenAI" => OPENAI_ENV_VARS,
+            "OpenRouter" => OPENROUTER_ENV_VARS,
             _ => &[],
         }
     }
@@ -71,11 +84,20 @@ pub struct OpenAiCompatClient {
     max_retries: u32,
     initial_backoff: Duration,
     max_backoff: Duration,
+    extra_headers: Vec<(&'static str, String)>,
 }
 
 impl OpenAiCompatClient {
     #[must_use]
     pub fn new(api_key: impl Into<String>, config: OpenAiCompatConfig) -> Self {
+        let extra_headers = if config.provider_name == "OpenRouter" {
+            vec![
+                ("HTTP-Referer", std::env::var("OPENROUTER_REFERER").unwrap_or_else(|_| "https://claw-code.dev".to_string())),
+                ("X-Title", std::env::var("OPENROUTER_TITLE").unwrap_or_else(|_| "Claw Code".to_string())),
+            ]
+        } else {
+            Vec::new()
+        };
         Self {
             http: reqwest::Client::new(),
             api_key: api_key.into(),
@@ -83,6 +105,7 @@ impl OpenAiCompatClient {
             max_retries: DEFAULT_MAX_RETRIES,
             initial_backoff: DEFAULT_INITIAL_BACKOFF,
             max_backoff: DEFAULT_MAX_BACKOFF,
+            extra_headers,
         }
     }
 
@@ -186,10 +209,15 @@ impl OpenAiCompatClient {
         request: &MessageRequest,
     ) -> Result<reqwest::Response, ApiError> {
         let request_url = chat_completions_endpoint(&self.base_url);
-        self.http
+        let mut builder = self
+            .http
             .post(&request_url)
             .header("content-type", "application/json")
-            .bearer_auth(&self.api_key)
+            .bearer_auth(&self.api_key);
+        for (key, value) in &self.extra_headers {
+            builder = builder.header(*key, value);
+        }
+        builder
             .json(&build_chat_completion_request(request))
             .send()
             .await

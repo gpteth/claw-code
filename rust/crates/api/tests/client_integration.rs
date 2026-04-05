@@ -203,22 +203,15 @@ async fn provider_client_dispatches_api_requests() {
         vec![http_response(
             "200 OK",
             "application/json",
-            "{\"id\":\"msg_provider\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"text\",\"text\":\"Dispatched\"}],\"model\":\"claude-sonnet-4-6\",\"stop_reason\":\"end_turn\",\"stop_sequence\":null,\"usage\":{\"input_tokens\":3,\"output_tokens\":2}}",
+            "{\"id\":\"msg_provider\",\"object\":\"chat.completion\",\"model\":\"anthropic/claude-sonnet-4-6\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"Dispatched\"},\"finish_reason\":\"stop\"}],\"usage\":{\"prompt_tokens\":3,\"completion_tokens\":2}}",
         )],
     )
     .await;
 
-    let client = ProviderClient::from_model_with_default_auth(
-        "claude-sonnet-4-6",
-        Some(AuthSource::ApiKey("test-key".to_string())),
-    )
-    .expect("api provider client should be constructed");
-    let client = match client {
-        ProviderClient::ClawApi(client) => {
-            ProviderClient::ClawApi(client.with_base_url(server.base_url()))
-        }
-        other => panic!("expected default provider, got {other:?}"),
-    };
+    // Build an OpenRouter client pointing at the mock server
+    let or_client = api::OpenAiCompatClient::new("test-key", api::OpenAiCompatConfig::openrouter())
+        .with_base_url(server.base_url());
+    let client = ProviderClient::OpenRouter(or_client);
 
     let response = client
         .send_message(&sample_request(false))
@@ -229,11 +222,7 @@ async fn provider_client_dispatches_api_requests() {
 
     let captured = state.lock().await;
     let request = captured.first().expect("server should capture request");
-    assert_eq!(request.path, "/v1/messages");
-    assert_eq!(
-        request.headers.get("x-api-key").map(String::as_str),
-        Some("test-key")
-    );
+    assert_eq!(request.path, "/chat/completions");
 }
 
 #[tokio::test]
